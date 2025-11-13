@@ -1,34 +1,3 @@
-# import random
-
-# def number_guessing_game():
-#     print("Welcome to the Number Guessing Game!")
-#     print("I'm thinking of a number between 1 and 100.")
-    
-#     # Generate a random number between 1 and 100
-#     secret_number = random.randint(1, 100)
-#     attempts = 0
-    
-#     while True:
-#         try:
-#             guess = int(input("Enter your guess: "))
-#             attempts += 1
-
-#             if guess < secret_number:
-#                 print("Too low! Try again.")
-#             elif guess > secret_number:
-#                 print("Too high! Try again.")
-#             else:
-#                 print(f"🎉 Congratulations! You guessed the number {secret_number} in {attempts} attempts.")
-#                 break
-#         except ValueError:
-#             print("Please enter a valid number.")
-
-# if __name__ == "__main__":
-#     number_guessing_game()
-
-
-
-
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -37,7 +6,7 @@ class NumberGuessingGame:
     def __init__(self, master):
         self.master = master
         self.master.title("Number Guessing Game")
-        self.master.geometry("350x250")
+        self.master.geometry("350x300")
         self.master.resizable(False, False)
 
         self.secret_number = random.randint(1, 100)
@@ -61,7 +30,11 @@ class NumberGuessingGame:
 
         # Reset button
         self.reset_button = tk.Button(master, text="Reset Game", font=("Arial", 10), command=self.reset_game)
-        self.reset_button.pack(pady=10)
+        self.reset_button.pack(pady=5)
+
+        # Exit button
+        self.exit_button = tk.Button(master, text="Exit Game", font=("Arial", 10), command=self.exit_game, fg="white", bg="red")
+        self.exit_button.pack(pady=5)
 
     def check_guess(self):
         try:
@@ -84,6 +57,9 @@ class NumberGuessingGame:
         self.entry.delete(0, tk.END)
         self.feedback_label.config(text="")
         self.entry.focus()
+
+    def exit_game(self):
+        self.master.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()
